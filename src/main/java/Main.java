@@ -32,11 +32,12 @@ public class Main {
 	
 	private static final Logger logger = LogManager.getLogger(Main.class.getName());
 	protected static DesiredCapabilities capabilities;
-	private static boolean DEBUG = false;
+	private static boolean DEBUG = true;
 
 	public static void main(String[] args) {
 
-		port(Integer.valueOf(System.getenv("PORT")));
+		//port(Integer.valueOf(System.getenv("PORT")));
+		port(8099);
 		staticFileLocation("/public");
 
 		get("/hello", (req, res) -> "Hello World");
@@ -98,8 +99,7 @@ public class Main {
 			boolean isvalid = checkUrlValidity(url);
 			if (isvalid == true) {
 				if (System.getProperty("os.name").contains("Linux")) {
-					File file = new File(
-							Thread.currentThread().getContextClassLoader().getResource("phantomjs").getFile());
+					File file = new File("bin//phantomjs");
 					if (!file.canExecute()) {
 						file.setExecutable(true);
 					}
@@ -107,8 +107,7 @@ public class Main {
 					if (DEBUG)
 						logger.info(System.getProperty("phantomjs.binary.path"));
 				} else {
-					File file = new File(
-							Thread.currentThread().getContextClassLoader().getResource("phantomjs.exe").getFile());
+					File file = new File("bin\\phantomjs.exe");
 					System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
 					if (DEBUG)
 						logger.info(System.getProperty("phantomjs.binary.path"));

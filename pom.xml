@@ -81,5 +81,16 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	        </resource>
+	        <resource>
+	            <directory>src/test/java</directory>
+	        </resource>
+	        <resource>
+	            <directory>bin</directory>
+	        </resource>
+    	</resources>
 	</build>
 </project>
